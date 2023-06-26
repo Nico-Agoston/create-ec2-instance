@@ -1,0 +1,45 @@
+# This workflow:
+
+name: Release a new Verison of the Pipeline
+on:
+  push:
+    branches:
+      - main
+          
+## Define all Jobs
+jobs:
+  versioning:
+    name: create version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get_next_version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            ## This looks at all commits ever done!
+            fetch-depth: 0
+
+      - name: Git Semantic Version
+        id: get_next_version 
+        uses: PaulHatch/semantic-version@v5.0.3
+        with:
+          branch: main
+          tag_prefix: "v"
+          major_pattern: "Major:"
+          minor_pattern: "feat:"
+          version_format: "v${major}.${minor}.${patch}"
+
+  Release:
+    needs: versioning
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          tag_name: ${{ needs.versioning.outputs.version }}
+          release_name: ${{ needs.versioning.outputs.version }}
+          prerelease: false

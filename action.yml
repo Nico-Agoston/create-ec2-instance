@@ -1,0 +1,20 @@
+name: 'Create AWS EC2 instance'
+description: 'Github action to create a new AWS EC2 instance in the cloud using passed through arguments'
+inputs:
+  operating-system:
+    description: 'Provide the Operating system used on the EC2 instance [ubuntu, windows, aws-linux, ...]'
+    required: true
+    default: 'ubuntu'
+
+  access-key-id:
+    description: 'The Access Key Id used to authenticate against AWS'
+    required: true
+    
+  access-key-secret:
+    description: 'The Access Key secret used to authenticate against AWS'
+    required: true
+
+outputs:
+runs:
+  using: 'node18'
+  main: action/index.js
