@@ -14,7 +14,7 @@ inputs:
     description: 'The Access Key secret used to authenticate against AWS'
     required: true
 
-outputs:
+# outputs:
 runs:
   using: 'node18'
   main: action/index.js
