@@ -1,11 +1,6 @@
 name: 'Create AWS EC2 instance'
 description: 'Github action to create a new AWS EC2 instance in the cloud using passed through arguments'
 inputs:
-  operating-system:
-    description: 'Provide the Operating system used on the EC2 instance [ubuntu, windows, aws-linux, ...]'
-    required: true
-    default: 'ubuntu'
-
   access-key-id:
     description: 'The Access Key Id used to authenticate against AWS'
     required: true
@@ -13,6 +8,30 @@ inputs:
   access-key-secret:
     description: 'The Access Key secret used to authenticate against AWS'
     required: true
+  
+  region:
+    description: 'The region where the EC2 instance should get created'
+    required: true
+
+  image-id:
+    description: 'Provide the Operating system used on the EC2 instance [ubuntu, windows, aws-linux, ...]'
+    required: true
+    default: 'ami-0329d3839379bfd15'
+  
+  instance-type:
+    description: The Type of the new instance which should get launched [t2.micro, t2.medium, t5.xlarge, ...]
+    required: true
+    default: 't2.micro'
+  
+  key-pair:
+    description: 'Keypair which should get attached to the ec2 instance for SSH connection'
+    required: false
+  
+  security-groups:
+    description: 'The Security Groups which should get attached to the new EC2 instance divided by comma'
+    required: false
+
+
 
 # outputs:
 runs:
