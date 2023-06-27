@@ -33,6 +33,13 @@ AWS.config.update({
 // Create EC2 service object
 var ec2 = new AWS.EC2({apiVersion: '2016-11-15'});
 
+var block_device_mapping = [{
+    "DeviceName": "/dev/sdg",
+    "Ebs": {
+      "VolumeSize": volume_size
+    }
+}]
+
 // Setup instance Parameters
 var instance_parameters = {
     ImageId: image_id,
@@ -41,7 +48,7 @@ var instance_parameters = {
     MinCount: 1,
     MaxCount: 1,
     SecurityGroups: security_groups,
-    VolumeSize: volume_size
+    BlockDeviceMappings: block_device_mapping
 }
 
 // Create a promise on an EC2 service object
