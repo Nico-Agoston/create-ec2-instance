@@ -17,7 +17,11 @@ inputs:
     description: 'Provide the Operating system used on the EC2 instance [ubuntu, windows, aws-linux, ...]'
     required: true
     default: 'ami-0329d3839379bfd15'
-  
+
+  name:
+    description: The name of the new EC2 instance
+    required: true
+
   instance-type:
     description: The Type of the new instance which should get launched [t2.micro, t2.medium, t5.xlarge, ...]
     required: true
@@ -30,6 +34,11 @@ inputs:
   security-groups:
     description: 'The Security Groups which should get attached to the new EC2 instance divided by comma'
     required: false
+  
+  volume-size:
+    description: The size of the attached volume
+    required: false
+    default: 8
 
 
 

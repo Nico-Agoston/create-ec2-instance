@@ -1,5 +1,4 @@
 const core = require('@actions/core');
-const exec = require('@actions/exec');
 const AWS  = require("aws-sdk");
 
 // Set the Pipeline input
@@ -7,9 +6,20 @@ const access_key_id = core.getInput('access-key-id');
 const access_key_secret = core.getInput('access-key-secret');
 const region = core.getInput('region');
 const image_id = core.getInput('image-id');
+const instance_name = core.getInput('name');
 const instance_type = core.getInput('instance-type');
 const key_pair = core.getInput('key-pair');
 const security_groups = new Array(core.getInput('security-groups'));
+const volume_size = new Array(core.getInput('volume-size'));
+
+
+// Get the current Date for a Tag
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today= yyyy + '-' + mm + '-' + dd;
 
 // Load credentials and set region from pipeline input
 AWS.config.update({
@@ -30,28 +40,52 @@ var instance_parameters = {
     KeyName: key_pair,
     MinCount: 1,
     MaxCount: 1,
-    SecurityGroups: security_groups
+    SecurityGroups: security_groups,
+    VolumeSize: volume_size
 }
 
-// var instance_promise = new AWS.EC2({apiVersion: '2016-11-15'}).runInstances(instanceParams).promise();
-// Run
-async function run(){
-    try {
-        console.log('Check If values are passed through as expected:');
-        console.log(access_key_id);
-        console.log(access_key_secret);
-        console.log(region);
-        console.log(image_id);
-        console.log(instance_type);
-        console.log(key_pair);
-        array.forEach(security_groups => {
-            console.log(security_groups);
-        });
-        
-    } catch (error) {
-        console.log(error.message);
-        core.setFailed(error.message);
+// Create a promise on an EC2 service object
+var instance_promise = new AWS.EC2({apiVersion: '2016-11-15'}).runInstances(instance_parameters).promise();
+
+// Handle promise's fulfilled/rejected states
+instance_promise.then(
+    function (data) {
+        console.log(data);
+        var instanceId = data.Instances[0].InstanceId;
+        console.log("Created instance", instanceId);
+        // Add tags to the instance
+        tagParams = {
+            Resources: [instanceId], Tags: [
+                {
+                    // Name the instance
+                    Key: 'Name',
+                    Value: instance_name
+                },
+                {
+                    // Tag the instance with the date it got created on
+                    Key: 'Created on',
+                    Value: today
+                },
+                {
+                    // Tag the instance with the creator of the instance, in this case it is created by Pipeline
+                    Key: 'creator',
+                    Value: 'Created by Pipeline'
+                }
+            ]
+        };
+        // Create a promise on an EC2 service object
+        var tagPromise = new AWS.EC2({ apiVersion: '2016-11-15' }).createTags(tagParams).promise();
+        // Handle promise's fulfilled/rejected states
+        tagPromise.then(
+            function (data) {
+                console.log("Instance tagged");
+            }).catch(
+                function (err) {
+                    console.error(err, err.stack);
+                });
     }
-}
-
-run();
+).catch(
+    function (err) {
+        console.error(err, err.stack);
+    }
+);
