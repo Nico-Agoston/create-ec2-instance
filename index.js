@@ -23,15 +23,14 @@ today= yyyy + '-' + mm + '-' + dd;
 
 
 AWS.config.update({region: region});
-var creds = new AWS.Credentials(access_key_id, access_key_secret);
+// var creds = new AWS.Credentials(access_key_id, access_key_secret);
 // Load credentials and set region from pipeline input
-// AWS.config.update({
-//     credentials: {
-//      access_key_id: access_key_id,
-//      secret_access_key: access_key_secret,
-//      region: region
-//     }
-//    })
+AWS.config.update({
+    credentials: {
+     access_key_id: access_key_id,
+     secret_access_key: access_key_secret
+    }
+   })
 
 // Create EC2 service object
 var ec2 = new AWS.EC2({apiVersion: '2016-11-15'});
