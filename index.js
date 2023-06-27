@@ -10,7 +10,7 @@ const instance_name = core.getInput('name');
 const instance_type = core.getInput('instance-type');
 const key_pair = core.getInput('key-pair');
 const security_groups = new Array(core.getInput('security-groups'));
-const volume_size = new Array(core.getInput('volume-size'));
+const volume_size = parseInt(core.getInput('volume-size'));
 
 
 // Get the current Date for a Tag
