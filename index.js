@@ -44,7 +44,10 @@ async function run(){
         console.log(image_id);
         console.log(instance_type);
         console.log(key_pair);
-        console.log(security_groups);
+        array.forEach(security_groups => {
+            console.log(security_groups);
+        });
+        
     } catch (error) {
         console.log(error.message);
         core.setFailed(error.message);
