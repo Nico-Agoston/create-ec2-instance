@@ -46,3 +46,58 @@ jobs:
           name: Test-EC2-instance
           volume-size: 12
 ```
+output:
+
+```sh
+{
+  Groups: [],
+  Instances: [
+    {
+      AmiLaunchIndex: 0,
+      ImageId: 'ami-04e601abe3e1a910f',
+      InstanceId: 'i-09f6a8751b4bfda7f',
+      InstanceType: 't2.micro',
+      KeyName: 'cyreen-ec2-key',
+      LaunchTime: 2023-06-28T14:31:14.000Z,
+      Monitoring: [Object],
+      Placement: [Object],
+      PrivateDnsName: 'ip-172-31-13-49.eu-central-1.compute.internal',
+      PrivateIpAddress: '172.31.13.49',
+      ProductCodes: [],
+      PublicDnsName: '',
+      State: [Object],
+      StateTransitionReason: '',
+      SubnetId: 'subnet-198f1770',
+      VpcId: 'vpc-94e36afd',
+      Architecture: 'x86_64',
+      BlockDeviceMappings: [],
+      ClientToken: 'c52deb70-41f5-4be0-88df-38cc458980eb',
+      EbsOptimized: false,
+      EnaSupport: true,
+      Hypervisor: 'xen',
+      ElasticGpuAssociations: [],
+      ElasticInferenceAcceleratorAssociations: [],
+      NetworkInterfaces: [Array],
+      RootDeviceName: '/dev/sda1',
+      RootDeviceType: 'ebs',
+      SecurityGroups: [Array],
+      SourceDestCheck: true,
+      StateReason: [Object],
+      Tags: [],
+      VirtualizationType: 'hvm',
+      CpuOptions: [Object],
+      CapacityReservationSpecification: [Object],
+      Licenses: [],
+      MetadataOptions: [Object],
+      EnclaveOptions: [Object],
+      PrivateDnsNameOptions: [Object],
+      MaintenanceOptions: [Object],
+      CurrentInstanceBootMode: 'legacy-bios'
+    }
+  ],
+  OwnerId: '175625360613',
+  ReservationId: 'r-0af7f4dc303147983'
+}
+Created instance i-09f6a8751b4bfda7f
+Instance tagged
+```
