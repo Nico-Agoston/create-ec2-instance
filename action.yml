@@ -31,8 +31,8 @@ inputs:
     description: 'Keypair which should get attached to the ec2 instance for SSH connection'
     required: false
   
-  security-groups:
-    description: 'The Security Groups which should get attached to the new EC2 instance divided by comma'
+  security-group-ids:
+    description: 'The IDs of the Security Groups which should get attached to the new EC2 instance divided by comma'
     required: false
   
   volume-size:

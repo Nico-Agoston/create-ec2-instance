@@ -9,9 +9,9 @@ const image_id = core.getInput('image-id');
 const instance_name = core.getInput('name');
 const instance_type = core.getInput('instance-type');
 const key_pair = core.getInput('key-pair');
-// const security_groups = core.getInput('security-groups').replace(" ","").split(',');
-let security_groups = core.getInput('security-groups');
+let security_group_ids = core.getInput('security-group-ids').replace(" ","").split(',');
 const volume_size = parseInt(core.getInput('volume-size'));
+
 
 
 // Get the current Date for a Tag
@@ -19,7 +19,6 @@ var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear();
-
 today= yyyy + '-' + mm + '-' + dd;
 
 // update the config and the credentials
@@ -43,7 +42,7 @@ var instance_parameters = {
     KeyName: key_pair,
     MinCount: 1,
     MaxCount: 1,
-    SecurityGroups: security_groups,
+    SecurityGroupIds: security_group_ids,
     BlockDeviceMappings: block_device_mapping
 }
 
