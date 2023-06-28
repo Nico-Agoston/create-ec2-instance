@@ -9,8 +9,13 @@ const image_id = core.getInput('image-id');
 const instance_name = core.getInput('name');
 const instance_type = core.getInput('instance-type');
 const key_pair = core.getInput('key-pair');
-const security_groups = core.getInput('security-groups').split(',');
+const security_groups = core.getInput('security-groups').replace(" ","").split(',');
 const volume_size = parseInt(core.getInput('volume-size'));
+
+// let test = "test1, test2".replace(" ","").split(',');
+// const test2 = "test1, test2".split(',');
+
+// var test3 = test[0];
 
 // Get the current Date for a Tag
 var today = new Date();

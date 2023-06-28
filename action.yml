@@ -19,11 +19,11 @@ inputs:
     default: 'ami-0329d3839379bfd15'
 
   name:
-    description: The name of the new EC2 instance
+    description: 'The name of the new EC2 instance'
     required: true
 
   instance-type:
-    description: The Type of the new instance which should get launched [t2.micro, t2.medium, t5.xlarge, ...]
+    description: 'The Type of the new instance which should get launched [t2.micro, t2.medium, t5.xlarge, ...]'
     required: true
     default: 't2.micro'
   
@@ -36,7 +36,7 @@ inputs:
     required: false
   
   volume-size:
-    description: The size of the attached volume
+    description: 'The size of the attached volume in Gib'
     required: false
     default: 8
 
