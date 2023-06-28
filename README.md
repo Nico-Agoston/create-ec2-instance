@@ -48,7 +48,7 @@ jobs:
 ```
 output:
 
-```sh
+```json
 {
   Groups: [],
   Instances: [
