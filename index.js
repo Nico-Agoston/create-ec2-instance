@@ -13,6 +13,7 @@ const security_groups = new Array(core.getInput('security-groups'));
 const volume_size = parseInt(core.getInput('volume-size'));
 
 
+
 // Get the current Date for a Tag
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
@@ -22,21 +23,16 @@ var yyyy = today.getFullYear();
 today= yyyy + '-' + mm + '-' + dd;
 
 
+// update the config and the credentials
 AWS.config.update({region: region});
-// var creds = new AWS.Credentials(access_key_id, access_key_secret);
-// Load credentials and set region from pipeline input
-AWS.config.update({
-    credentials: {
-     access_key_id: access_key_id,
-     secret_access_key: access_key_secret
-    }
-   })
+var creds = new AWS.Credentials(access_key_id, access_key_secret);
+
 
 // Create EC2 service object
 var ec2 = new AWS.EC2({apiVersion: '2016-11-15'});
 
 var block_device_mapping = [{
-    "DeviceName": "/dev/sdg",
+    "DeviceName": "/dev/sda1",
     "Ebs": {
       "VolumeSize": volume_size
     }
@@ -52,6 +48,7 @@ var instance_parameters = {
     SecurityGroups: security_groups,
     BlockDeviceMappings: block_device_mapping
 }
+
 
 // Create a promise on an EC2 service object
 var instance_promise = new AWS.EC2({apiVersion: '2016-11-15'}).runInstances(instance_parameters).promise();
