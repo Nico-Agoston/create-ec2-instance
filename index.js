@@ -89,6 +89,6 @@ instance_promise.then(
 ).catch(
     function (err) {
         // console.error(err, err.stack);
-        core.setFailed(error.message);
+        core.setFailed(err.message);
     }
 );
