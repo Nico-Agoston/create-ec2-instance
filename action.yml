@@ -14,7 +14,7 @@ inputs:
     required: true
 
   image-id:
-    description: 'Provide the Operating system used on the EC2 instance [ubuntu, windows, aws-linux, ...]'
+    description: 'Provide the Operating system image ID used on the EC2 instance [ubuntu, windows, aws-linux, ...]'
     required: true
     default: 'ami-0329d3839379bfd15'
 
