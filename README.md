@@ -18,7 +18,7 @@
 ## Usage
 
 ```yaml
-name: Testing own Actions
+name: Testing
 on:
   push:
     branches:
