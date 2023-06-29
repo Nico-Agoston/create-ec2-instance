@@ -60,23 +60,23 @@ output:
     {
       AmiLaunchIndex: 0,
       ImageId: 'ami-04e601abe3e1a910f',
-      InstanceId: 'i-09f6a8751b4bfda7f',
+      InstanceId: 'i-xxxxxxxxxxxxxxxxx',
       InstanceType: 't2.micro',
-      KeyName: 'cyreen-ec2-key',
+      KeyName: '<Your entered key name>',
       LaunchTime: 2023-06-28T14:31:14.000Z,
       Monitoring: [Object],
       Placement: [Object],
-      PrivateDnsName: 'ip-172-31-13-49.eu-central-1.compute.internal',
-      PrivateIpAddress: '172.31.13.49',
+      PrivateDnsName: 'ip-xxx-xxx-xxx-xxx.<region>.compute.internal',
+      PrivateIpAddress: 'xxx.xxx.xxx.xxx',
       ProductCodes: [],
       PublicDnsName: '',
       State: [Object],
       StateTransitionReason: '',
-      SubnetId: 'subnet-198f1770',
-      VpcId: 'vpc-94e36afd',
+      SubnetId: 'subnet-id',
+      VpcId: 'vpc-9id',
       Architecture: 'x86_64',
       BlockDeviceMappings: [],
-      ClientToken: 'c52deb70-41f5-4be0-88df-38cc458980eb',
+      ClientToken: '<token>',
       EbsOptimized: false,
       EnaSupport: true,
       Hypervisor: 'xen',
@@ -100,9 +100,9 @@ output:
       CurrentInstanceBootMode: 'legacy-bios'
     }
   ],
-  OwnerId: '175625360613',
-  ReservationId: 'r-0af7f4dc303147983'
+  OwnerId: '<Your Owner ID>',
+  ReservationId: '<Reservation ID>'
 }
-Created instance i-09f6a8751b4bfda7f
+Created instance i-ID
 Instance tagged
 ```
