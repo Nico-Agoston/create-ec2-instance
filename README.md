@@ -1,5 +1,10 @@
 # 🚀 Create AWS EC2 instance - GitHub Action
 
+## How this Action works
+This Action is used to create an EC2 instance in your AWS Organization if it does not already exist!
+So If there is no existing EC2 instance with the configured name (see parameters) it will skip this step and output the name and the instance ID.
+If it does not already exist, it creates a new EC2 instance with the provided settings.
+
 ## Parameters
 
 |   Input Parameter   |                                         Description                                               | Default Value |

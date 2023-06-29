@@ -27,6 +27,7 @@ var creds = new AWS.Credentials(access_key_id, access_key_secret);
 // Create EC2 service object
 var ec2 = new AWS.EC2({ apiVersion: '2016-11-15' });
 
+// The configuration for the Storage which is attached to the EC2 isntance
 var block_device_mapping = [{
     "DeviceName": "/dev/sda1",
     "Ebs": {
@@ -45,6 +46,7 @@ var instance_parameters = {
     BlockDeviceMappings: block_device_mapping
 }
 
+// Parameter to find an existing ec2 instance
 var params = {
     Filters: [
         {
