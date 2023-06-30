@@ -1,3 +1,6 @@
+//
+// Build it by using the following command: ncc build .\index.js -o action
+//
 const core = require('@actions/core');
 const AWS = require("aws-sdk");
 
